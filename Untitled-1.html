@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变速箱维修报价单生成器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 输入表单 -->
+        <div class="form-section">
+            <h2>填写信息</h2>
+            <form id="inputForm">
+                <!-- 客户信息部分 -->
+                <div class="customer-info">
+                    <h3>客户信息：</h3>
+                    <div class="info-grid">
+                        <div class="info-left">
+                            <div class="form-group">
+                                <label for="accountName">账户名称：</label>
+                                <input type="text" id="accountName" name="accountName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">联系电话：</label>
+                                <input type="text" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="carBrand">汽车品牌：</label>
+                                <input type="text" id="carBrand" name="carBrand" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="carModel">车型年份：</label>
+                                <input type="text" id="carModel" name="carModel" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="carLocation">车辆位置：</label>
+                                <input type="text" id="carLocation" name="carLocation" required>
+                            </div>
+                        </div>
+                        <div class="info-right">
+                            <div class="form-group">
+                                <label for="vehicleCondition">车辆状况：</label>
+                                <input type="text" id="vehicleCondition" name="vehicleCondition" required>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 维护计划输入（分为左右两部分） -->
+                <div class="maintenance-inputs">
+                    <div class="plan-input-left">
+                        <h3>维护计划1</h3>
+                        <div class="form-group">
+                            <label for="subTotal1">Sub Total：</label>
+                            <div class="input-with-symbol">
+    
+                                <input type="text" step="0.01" id="subTotal1" name="subTotal1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="total1">Total：</label>
+                            <div class="input-with-symbol">
+                               
+                                <input type="text" step="0.01" id="total1" name="total1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-input-right">
+                        <h3>维护计划2</h3>
+                        <div class="form-group">
+                            <label for="subTotal2">Sub Total：</label>
+                            <div class="input-with-symbol">
+                                
+                                <input type="text" step="0.01" id="subTotal2" name="subTotal2" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="total2">Total：</label>
+                            <div class="input-with-symbol">
+                                
+                                <input type="text" step="0.01" id="total2" name="total2" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" onclick="redirectToPreview()">跳转到预览页面</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function redirectToPreview() {
+            // 获取基本数据
+            const accountName = encodeURIComponent(document.getElementById("accountName").value);
+            const vehicleCondition = encodeURIComponent(document.getElementById("vehicleCondition").value);
+            const phone = encodeURIComponent(document.getElementById("phone").value);
+            const carBrand = encodeURIComponent(document.getElementById("carBrand").value);
+            const carModel = encodeURIComponent(document.getElementById("carModel").value);
+            const carLocation = encodeURIComponent(document.getElementById("carLocation").value);
+
+            // 获取维护计划数据
+            const subTotal1 = encodeURIComponent(document.getElementById("subTotal1").value);
+            const total1 = encodeURIComponent(document.getElementById("total1").value);
+            const subTotal2 = encodeURIComponent(document.getElementById("subTotal2").value);
+            const total2 = encodeURIComponent(document.getElementById("total2").value);
+
+            // 构建URL参数
+            const urlParams = new URLSearchParams({
+                accountName,
+                vehicleCondition,
+                phone,
+                carBrand,
+                carModel,
+                carLocation,
+                subTotal1,
+                total1,
+                subTotal2,
+                total2
+            });
+
+            // 跳转到目标页面
+            window.location.href = `preview.html?${urlParams.toString()}`;
+        }
+    </script>
+</body>
+</html>

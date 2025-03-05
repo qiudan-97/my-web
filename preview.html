@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预览页面</title>
+    <link rel="stylesheet" href="styles1.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header 部分 -->
+        <header>
+            <div class="header-title">
+                <span class="super">SUPER</span>
+                <span class="five">5</span>
+            </div>
+            <div class="header-subtitle">
+                变速箱维修咨询
+            </div>
+            <div class="header-line"></div>
+        </header>
+
+        <!-- 客户信息部分 -->
+        <section class="customer-info">
+            <h3>客户信息：</h3>
+            <div class="info-grid">
+                <div class="info-left">
+                    <div class="info-item">
+                        <span class="label">账户名称：</span>
+                        <span class="value" id="previewAccountName"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">联系电话：</span>
+                        <span class="value" id="previewPhone"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">汽车品牌：</span>
+                        <span class="value" id="previewCarBrand"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">车型年份：</span>
+                        <span class="value" id="previewCarModel"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">车辆位置：</span>
+                        <span class="value" id="previewCarLocation"></span>
+                    </div>
+                </div>
+                <div class="info-right">
+                    <div class="info-item">
+                        <span class="label">车辆状况：</span>
+                        <span class="value" id="previewVehicleCondition"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 维护计划部分 -->
+<section class="maintenance-plans">
+    <div class="plan-left">
+        <div class="plan-header">
+            <h3>维护计划1</h3>
+            <div class="repair-time">
+                <span class="label">维修时间：</span>
+                <span class="value">144小时内</span>
+            </div>
+        </div>
+        <div class="plan-details">
+            <span class="label1">更换变速箱配件</span>
+        </div>
+        <div class="plan-details">
+            <span class="label">Sub Total:</span>
+            <span class="value" id="previewSubTotal1"></span>
+        </div>
+        <div class="plan-details">
+            <span class="label">Tax:</span>
+            <span class="value">0.00%</span>
+        </div>
+        <div class="tax-total-line"></div>
+        <div class="plan-details">
+            <span class="label2">Total:</span>
+            <span class="value" id="previewTotal1"></span>
+        </div>
+        <div class="plan-details">
+            <span class="labelzhibao">质保时间：&nbsp;6个月</span>
+        </div>
+    </div>
+    <div class="plan-right">
+        <div class="plan-header">
+            <h3>维护计划2</h3>
+            <div class="repair-time">
+                <span class="label">维修时间：</span>
+                <span class="value">144小时内</span>
+            </div>
+        </div>
+        <div class="plan-details">
+            <span class="label1">更换变速箱配件</span>
+        </div>
+        <div class="plan-details">
+            <span class="label">Sub Total:</span>
+            <span class="value" id="previewSubTotal2"></span>
+        </div>
+        <div class="plan-details">
+            <span class="label">Tax:</span>
+            <span class="value">0.00%</span>
+        </div>
+        <div class="tax-total-line"></div>
+        <div class="plan-details">
+            <span class="label2">Total:</span>
+            <span class="value" id="previewTotal2"></span>
+        </div>
+        <div class="plan-details">
+            <span class="labelzhibao">质保时间：&nbsp;6个月</span>
+        </div>
+    </div>
+</section>
+<!-- 右侧打印按钮 -->
+<button class="print-button no-print" onclick="window.print()">打印</button>
+    </div>
+
+    
+
+    <script>
+        // 解析URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // 填充客户信息
+        document.getElementById("previewAccountName").textContent = decodeURIComponent(urlParams.get("accountName"));
+        document.getElementById("previewVehicleCondition").textContent = decodeURIComponent(urlParams.get("vehicleCondition"));
+        document.getElementById("previewPhone").textContent = decodeURIComponent(urlParams.get("phone"));
+        document.getElementById("previewCarBrand").textContent = decodeURIComponent(urlParams.get("carBrand"));
+        document.getElementById("previewCarModel").textContent = decodeURIComponent(urlParams.get("carModel"));
+        document.getElementById("previewCarLocation").textContent = decodeURIComponent(urlParams.get("carLocation"));
+
+        // 填充维护计划数据
+        document.getElementById("previewSubTotal1").textContent = decodeURIComponent(urlParams.get("subTotal1"));
+        document.getElementById("previewTotal1").textContent = decodeURIComponent(urlParams.get("total1"));
+        document.getElementById("previewSubTotal2").textContent = decodeURIComponent(urlParams.get("subTotal2"));
+        document.getElementById("previewTotal2").textContent = decodeURIComponent(urlParams.get("total2"));
+
+        
+    </script>
+</body>
+</html>
